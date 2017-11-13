@@ -59,6 +59,9 @@ $(document).ready(function(){
 var more = $('.more');
 	more.hide();
 	$('#drop').on('click', function() {
+		$('.data').click(function(){
+		more.slideUp('fast');
+	});
 		more.slideDown('fast');
 		$(".south a").on('click',function(event){
 			event.preventDefault();
@@ -118,6 +121,9 @@ var more = $('.more');
 	type.hide();
 	$('#type').click(function () {
 		type.slideDown('fast');
+		$('.data').click(function(){
+		type.slideUp('fast');
+	});
 		$(".parecal a").on('click',function(event){
 		event.preventDefault();
 		$("#data ul").html('');
@@ -255,17 +261,16 @@ var more = $('.more');
 				if (toArray(data).length > 0){
 					var template = "<ul>{{#list}}<li class='info'><ul><li>{{addressee}}</li><li>{{area}}</li><li>{{type}}</li><li>{{time}}</li></ul></li>{{/list}}</ul>";
 					var views = Mustache.render(template, list);				
-					$('#data').html('');
-					$('#data').append(views);
-
+					$('#data').html('').append(views);
 				} else {
-					// $('#error').css('display', 'block');
-
+					$('#error').css('display', 'block');
+					$('#data').html('<p>'+'对不起，暂时没有您的信息呦~'+'</p>');
+					console.log("uuuu");
 					
 				}
 			
 		});
-		console.log(name);
+		// console.log(name);
 		$(this).siblings('input').blur();
 	});
 	
